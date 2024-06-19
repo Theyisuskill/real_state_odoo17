@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <menuitem id="menu_test_real_state" name="Test Real State" />
+    <menuitem id="menu_second_real_state" name="Real State" parent="menu_test_real_state" action="test_real_state"/>
+    <menuitem id="menu_settings_real_state" name="Configuracion" parent="menu_test_real_state" />
+    <menuitem id="menu_second_test_real_state" name="Real estate Type" parent="menu_settings_real_state" action="real_state.action_estate_property_type"/>
+    <menuitem id="menu_third_test_real_state" name="Real estate Property tag" parent="menu_settings_real_state" action="real_state.view_estate_property_tag_act"/>
+   
+</odoo>
