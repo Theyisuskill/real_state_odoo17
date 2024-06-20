@@ -83,6 +83,35 @@
             </form>
         </field>
     </record>
+    <record id="estate_property_kanban_view" model="ir.ui.view">
+        <field name="name">estate.property.kanban</field>
+        <field name="model">estate.property</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <field name="name"/>
+                <field name="state"/>
+                <field name="expected_price"/>
+                <field name="best_price"/>
+                <field name="selling_price" />
+                <field name="property_tag_ids" widget="many2many_tags"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click">
+                            <field name="name"/>
+                            <field name="expected_price" />
+                            <field name="best_price" invisible="state not in ('offer_received', 'offer_accepted') "/>
+                            <field name="selling_price" invisible="state != 'offer_accepted' " />
+                            <field name="property_tag_ids" widget="many2many_tags"/>
+                            <div t-if="record.state.raw_value == 'new'">
+                                This is new!
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+    
     <record id="estate_property_search_view" model="ir.ui.view">
         <field name="name">estate.property.search</field>
         <field name="model">estate.property</field>

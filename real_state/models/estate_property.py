@@ -42,6 +42,7 @@ class EstateProperty(models.Model):
         ('canceled', 'Canceled')
     ], default='new')   
     property_tag_ids = fields.Many2many('estate.property.tag', string='Tags')
+    res_user_id = fields.Many2one('res.users', string='Responsible')
     
     _sql_constraints = [
         ('positive_expected_price', 'CHECK(expected_price >= 0)', 'Expected price must be strictly positive.'),
@@ -82,4 +83,10 @@ class EstateProperty(models.Model):
         for record in self:
             if record.selling_price < record.expected_price * 0.9:
                 raise UserError(_('Selling price cannot be lower than 90% of the expected price'))
+            
+    @api.ondelete(at_uninstall=False)
+    def _prevent_deletion(self):
+        if self.state not in ['new', 'canceled']:
+            raise UserError(_('You cannot delete a property that is not in "New" or "Canceled" state'))
+        
     

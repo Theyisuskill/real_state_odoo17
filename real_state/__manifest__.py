@@ -11,6 +11,7 @@
         'views/estate_property_views.xml',
         'views/estate_property_type_views.xml',
         'views/estate_property_tag_views.xml',
+        'views/res_user_view_inherit.xml',
         'views/state_menu.xml',
 
         # 'views/listing_views.xml',
